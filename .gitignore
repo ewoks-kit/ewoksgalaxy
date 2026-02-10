@@ -1,0 +1,19 @@
+# Hidden files
+.*
+!.gitignore
+!.gitlab-ci.yml
+!.readthedocs.yaml
+!.flake8
+
+# Byte / compiled / optimized
+*.py[cod]
+__pycache__/
+*.so
+/doc/reference/_generated
+
+# Distribution / packaging
+/build/
+/dist/
+*.egg-info/
+.eggs/
+uv.lock

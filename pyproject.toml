@@ -1,0 +1,64 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ewoksgalaxy"
+version = "0.0.1-alpha"
+keywords = ["ewoks"]
+
+authors = [{ name = "ESRF", email = "dau-pydev@esrf.fr" }]
+description = "Galaxy binding for Ewoks"
+readme = { file = "README.md", content-type = "text/markdown" }
+license = { file = "LICENSE.md" }
+classifiers = [
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+]
+requires-python = ">=3.10"
+dependencies = ["ewokscore"]
+
+[project.urls]
+Homepage = "https://gitlab.esrf.fr/workflow/ewoks/ewoksgalaxy/"
+Documentation = "https://ewoksgalaxy.readthedocs.io/"
+Repository = "https://gitlab.esrf.fr/workflow/ewoks/ewoksgalaxy/"
+Issues = "https://gitlab.esrf.fr/workflow/ewoks/ewoksgalaxy/issues"
+Changelog = "https://gitlab.esrf.fr/workflow/ewoks/ewoksgalaxy/-/blob/main/CHANGELOG.md"
+
+[project.optional-dependencies]
+test = ["pytest >=7"]
+dev = ["ewoksgalaxy[test]", "ruff"]
+doc = [
+    "ewoksgalaxy[test]",
+    "sphinx >=4.5",
+    "pydata-sphinx-theme",
+    "sphinx-copybutton",
+]
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+namespaces = false
+
+[tool.setuptools.package-data]
+"ewoksgalaxy.tests.data" = ["*/*"]
+
+[project.entry-points."ewoks.tasks.class"]
+"ewoksgalaxy.tasks.*" = "ewoksgalaxy"
+
+[tool.coverage.run]
+omit = ["*/tests/*"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "S"]
+ignore = ["E203", "E501", "E701"]
+
+[tool.ruff.lint.per-file-ignores]
+# Ignore `S101` (assert used violations) in all test files
+"*/test_*.py" = ["S101"]
+
+[tool.ruff.lint.isort]
+force-single-line = true
