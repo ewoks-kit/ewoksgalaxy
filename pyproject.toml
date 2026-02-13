@@ -20,11 +20,11 @@ requires-python = ">=3.10"
 dependencies = ["ewokscore"]
 
 [project.urls]
-Homepage = "https://gitlab.esrf.fr/workflow/ewoks/ewoksgalaxy/"
+Homepage = "https://github.com/ewoks-kit/ewoksgalaxy/"
 Documentation = "https://ewoksgalaxy.readthedocs.io/"
-Repository = "https://gitlab.esrf.fr/workflow/ewoks/ewoksgalaxy/"
-Issues = "https://gitlab.esrf.fr/workflow/ewoks/ewoksgalaxy/issues"
-Changelog = "https://gitlab.esrf.fr/workflow/ewoks/ewoksgalaxy/-/blob/main/CHANGELOG.md"
+Repository = "https://github.com/ewoks-kit/ewoksgalaxy/"
+Issues = "https://github.com/ewoks-kit/ewoksgalaxy/issues"
+Changelog = "https://github.com/ewoks-kit/ewoksgalaxy/blob/main/CHANGELOG.md"
 
 [project.optional-dependencies]
 test = ["pytest >=7"]
