@@ -17,7 +17,10 @@ classifiers = [
     "Programming Language :: Python :: 3",
 ]
 requires-python = ">=3.10"
-dependencies = ["ewokscore"]
+dependencies = [
+    "ewokscore",
+    "gxformat2@ git+https://github.com/galaxyproject/gxformat2", # To have https://github.com/galaxyproject/gxformat2/pull/134
+]
 
 [project.urls]
 Homepage = "https://github.com/ewoks-kit/ewoksgalaxy/"
@@ -27,7 +30,7 @@ Issues = "https://github.com/ewoks-kit/ewoksgalaxy/issues"
 Changelog = "https://github.com/ewoks-kit/ewoksgalaxy/blob/main/CHANGELOG.md"
 
 [project.optional-dependencies]
-test = ["pytest >=7"]
+test = ["pytest >=7", "ewoks"]
 dev = ["ewoksgalaxy[test]", "ruff"]
 doc = [
     "ewoksgalaxy[test]",
@@ -58,7 +61,13 @@ ignore = ["E203", "E501", "E701"]
 
 [tool.ruff.lint.per-file-ignores]
 # Ignore `S101` (assert used violations) in all test files
-"*/test_*.py" = ["S101"]
+"*/test_*.py" = ["S101", "S603"]
 
 [tool.ruff.lint.isort]
 force-single-line = true
+
+[project.entry-points."ewoks.engines"]
+"gxwf" = "ewoksgalaxy.engine:GalaxyWorkflowEngine"
+
+[project.entry-points."ewoks.engines.serialization.representations"]
+"gxwf" = "ewoksgalaxy.engine:GalaxyWorkflowEngine"
