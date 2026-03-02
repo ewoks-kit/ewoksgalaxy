@@ -1,4 +1,8 @@
+from pathlib import Path
+
 import pytest
+
+_HERE = Path(__file__).parent
 
 
 @pytest.fixture
@@ -47,3 +51,8 @@ def ewoks_workflow():
     ]
 
     return {"graph": graph, "links": links, "nodes": nodes}
+
+
+@pytest.fixture
+def iris_workflow_path():
+    yield _HERE / "iris.ga"

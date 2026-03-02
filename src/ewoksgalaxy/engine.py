@@ -4,6 +4,8 @@ from typing import List
 from typing import Optional
 from typing import Union
 
+from ewokscore import load_graph
+from ewokscore.engine_interface import Path
 from ewokscore.engine_interface import RawExecInfoType
 from ewokscore.engine_interface import TaskGraph
 from ewokscore.engine_interface import WorkflowEngineWithSerialization
@@ -40,7 +42,24 @@ class GalaxyWorkflowEngine(WorkflowEngineWithSerialization):
         root_module: Optional[str] = None,
         **deserialize_options,
     ) -> TaskGraph:
-        raise NotImplementedError("TODO")
+        if representation is None:
+            representation = self.get_graph_representation(graph)
+
+        if representation == self._GALAXY_REPR:
+            return load_graph(
+                io.galaxy_to_ewoks(graph),
+                inputs=inputs,
+                root_dir=root_dir,
+                root_module=root_module,
+            )
+
+        return load_graph(
+            graph,
+            inputs=inputs,
+            representation=representation,
+            root_dir=root_dir,
+            root_module=root_module,
+        )
 
     def serialize_graph(
         self,

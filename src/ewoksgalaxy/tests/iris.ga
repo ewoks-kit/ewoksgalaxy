@@ -1,0 +1,106 @@
+{
+    "a_galaxy_workflow": "true",
+    "annotation": "",
+    "format-version": "0.1",
+    "name": "Workflow constructed from history 'Iris'",
+    "steps": {
+        "0": {
+            "annotation": "",
+            "content_id": null,
+            "errors": null,
+            "id": 0,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "iris.csv"
+                }
+            ],
+            "label": "iris.csv",
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "left": 0,
+                "top": 1
+            },
+            "tool_id": null,
+            "tool_state": "{\"optional\": false, \"tag\": null}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "32a7394a-0d52-44af-9f10-5cb36e6510a1",
+            "when": null,
+            "workflow_outputs": []
+        },
+        "1": {
+            "annotation": "",
+            "content_id": "Convert characters1",
+            "errors": null,
+            "id": 1,
+            "input_connections": {
+                "input": {
+                    "id": 0,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Convert",
+            "outputs": [
+                {
+                    "name": "out_file1",
+                    "type": "tabular"
+                }
+            ],
+            "position": {
+                "left": 257.83000000000004,
+                "top": 0
+            },
+            "post_job_actions": {},
+            "tool_id": "Convert characters1",
+            "tool_state": "{\"__input_ext\": \"tabular\", \"chromInfo\": \"/shared/ifbstor1/galaxy/mutable-config/tool-data/shared/ucsc/chrom/?.len\", \"condense\": true, \"convert_from\": \"C\", \"input\": {\"__class__\": \"ConnectedValue\"}, \"strip\": true, \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_uuid": null,
+            "tool_version": "1.0.1",
+            "type": "tool",
+            "uuid": "d5b0b956-511d-4648-afb0-8761632712cc",
+            "when": null,
+            "workflow_outputs": []
+        },
+        "2": {
+            "annotation": "",
+            "content_id": "Remove beginning1",
+            "errors": null,
+            "id": 2,
+            "input_connections": {
+                "input": {
+                    "id": 1,
+                    "output_name": "out_file1"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Remove beginning",
+            "outputs": [
+                {
+                    "name": "out_file1",
+                    "type": "input"
+                }
+            ],
+            "position": {
+                "left": 545.3788192725391,
+                "top": 10.080212100064074
+            },
+            "post_job_actions": {},
+            "tool_id": "Remove beginning1",
+            "tool_state": "{\"__input_ext\": \"tabular\", \"chromInfo\": \"/shared/ifbstor1/galaxy/mutable-config/tool-data/shared/ucsc/chrom/?.len\", \"input\": {\"__class__\": \"ConnectedValue\"}, \"num_lines\": \"1\", \"__page__\": 0, \"__rerun_remap_job_id__\": null}",
+            "tool_uuid": null,
+            "tool_version": "1.0.0",
+            "type": "tool",
+            "uuid": "866d3a4d-bf61-442d-8bec-72082d1e2062",
+            "when": null,
+            "workflow_outputs": []
+        }
+    },
+    "tags": [],
+    "uuid": "fad16a95-b497-4701-af67-031145c31692",
+    "version": 4
+}
