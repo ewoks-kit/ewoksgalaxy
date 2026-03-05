@@ -1,1 +1,1 @@
-<a href="https://gitlab.esrf.fr/dau/ci/pyci/-/blob/main/CONTRIBUTING_ruff.md" target="_blank">CONTRIBUTING.md</a>
+<a href="https://github.com/ewoks-kit/.github/blob/main/shared/CONTRIBUTING_ruff.md" target="_blank">CONTRIBUTING.md</a>
