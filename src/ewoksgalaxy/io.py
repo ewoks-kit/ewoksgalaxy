@@ -2,7 +2,6 @@ from typing import Any
 
 from ewokscore.engine_interface import TaskGraph
 
-
 _DEFAULT_LICENSE = "MIT"
 _DEFAULT_CREATOR = [{"class": "Organization", "name": "ESRF"}]
 
