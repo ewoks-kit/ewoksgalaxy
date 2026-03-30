@@ -3,15 +3,31 @@ from typing import Any
 from ewokscore.engine_interface import TaskGraph
 
 
+_DEFAULT_LICENSE = "MIT"
+_DEFAULT_CREATOR = [{"class": "Organization", "name": "ESRF"}]
+
+
+def _node_doc(node: dict) -> str:
+    return node.get("doc") or node.get("annotation") or f"Ewoks task {node['id']}"
+
+
+def _graph_doc(graph_metadata: dict[str, Any]) -> str:
+    return (
+        graph_metadata.get("doc")
+        or graph_metadata.get("annotation")
+        or graph_metadata.get("label")
+        or f"Ewoks workflow {graph_metadata['id']}"
+    )
+
+
 def _ewoks_node_to_galaxy_step(node: dict) -> dict[str, Any]:
     step: dict[str, Any] = {
+        "doc": _node_doc(node),
+        "label": node.get("label") or node["id"],
         "tool_id": node["task_identifier"],
         "type": "tool",
         "out": [],  # required according to specs but unused in real Galaxy workflows?
     }
-    label = node.get("label")
-    if label is not None:
-        step["label"] = label
 
     default_inputs = node.get("default_inputs")
     if not default_inputs:
@@ -41,13 +57,17 @@ def _ewoks_link_to_galaxy_input(link: dict, galaxy_step_indices: dict[str, str])
 def ewoks_to_galaxy(raw_graph: TaskGraph) -> dict[str, Any]:
     graph_dict = raw_graph.dump()
 
+    graph_metadata: dict[str, Any] = graph_dict["graph"]
     galaxy_graph: dict[str, Any] = {
         "class": "GalaxyWorkflow",
+        "creator": graph_metadata.get("creator") or _DEFAULT_CREATOR,
+        "doc": _graph_doc(graph_metadata),
         "inputs": [],  # TODO
+        "license": graph_metadata.get("license") or _DEFAULT_LICENSE,
         "outputs": [],  # TODO
+        "tags": graph_metadata.get("tags", []),
     }
 
-    graph_metadata: dict[str, str] = graph_dict["graph"]
     graph_id = graph_metadata.get("id")
     if graph_id is not None:
         galaxy_graph["id"] = graph_id
