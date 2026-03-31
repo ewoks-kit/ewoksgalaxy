@@ -19,7 +19,7 @@ classifiers = [
 requires-python = ">=3.10"
 dependencies = [
     "ewokscore",
-    "gxformat2@ git+https://github.com/galaxyproject/gxformat2", # To have https://github.com/galaxyproject/gxformat2/pull/134
+    "gxformat2>=0.23.0",
 ]
 
 [project.urls]
