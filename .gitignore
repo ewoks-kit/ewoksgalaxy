@@ -4,7 +4,6 @@
 !.github
 !.gitlab-ci.yml
 !.readthedocs.yaml
-!.flake8
 
 # Byte / compiled / optimized
 *.py[cod]
