@@ -10,7 +10,7 @@ def test_convert(ewoks_workflow: dict, tmpdir: Path):
         json.dump(ewoks_workflow, f)
 
     output_path = tmpdir / "workflow.yaml"
-    subprocess.run(
+    subprocess.run(  # noqa: S603
         [
             sys.executable,
             "-m",
@@ -25,7 +25,7 @@ def test_convert(ewoks_workflow: dict, tmpdir: Path):
     )
     assert output_path.exists()
 
-    subprocess.run(
+    subprocess.run(  # noqa: S603
         [sys.executable, "-m", "gxformat2.lint", str(output_path)],
         check=True,
     )

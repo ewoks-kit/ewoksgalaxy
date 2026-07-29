@@ -30,8 +30,14 @@ Issues = "https://github.com/ewoks-kit/ewoksgalaxy/issues"
 Changelog = "https://github.com/ewoks-kit/ewoksgalaxy/blob/main/CHANGELOG.md"
 
 [project.optional-dependencies]
-test = ["pytest >=7", "ewoks"]
-dev = ["ewoksgalaxy[test]", "ruff"]
+test = [
+    "pytest >=7",
+    "ewoks"
+]
+dev = [
+    "ewoksgalaxy[test]",
+    "ruff>=0.16.0"
+]
 doc = [
     "ewoksgalaxy[test]",
     "sphinx >=4.5",
@@ -56,15 +62,24 @@ namespaces = false
 omit = ["*/tests/*"]
 
 [tool.ruff.lint]
-select = ["E", "F", "I", "S"]
-ignore = ["E203", "E501", "E701"]
+select = [
+    "E", # pycodestyle errors
+    "F", # pyflakes
+    "I", # isort
+    "S", # flake8-bandit
+]
+ignore = [
+    "E501", # line too long
+]
 
 [tool.ruff.lint.per-file-ignores]
-# Ignore `S101` (assert used violations) in all test files
-"*/test_*.py" = ["S101", "S603"]
+"*/test_*.py" = [
+    "S101"  # allow asserts
+]
 
 [tool.ruff.lint.isort]
 force-single-line = true
+known-first-party = ["ewoksgalaxy"]
 
 [project.entry-points."ewoks.engines"]
 "gxwf" = "ewoksgalaxy.engine:GalaxyWorkflowEngine"
